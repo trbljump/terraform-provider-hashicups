@@ -175,7 +175,7 @@ func resourceOrderDelete(ctx context.Context, d *schema.ResourceData, m interfac
 
 	orderID := d.Id()
 
-	rr := c.DeleteOrder(orderID, &c.Token)
+	err := c.DeleteOrder(orderID, &c.Token)
 	if err != nil {
 		return diag.FromErr(err)
 	}
