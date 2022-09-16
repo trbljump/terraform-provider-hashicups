@@ -65,7 +65,7 @@ func dataSourceOrderRead(ctx context.Context, d *schema.ResourceData, m interfac
 
 	orderID := strconv.Itoa(d.Get("id").(int))
 
-	order, err := c.GetOrder(orderID)
+	order, err := c.GetOrder(orderID, &c.Token)
 	if err != nil {
 		return diag.FromErr(err)
 	}

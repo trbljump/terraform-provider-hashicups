@@ -38,7 +38,7 @@ func testAccCheckHashicupsOrderDestroy(s *terraform.State) error {
 
 		orderID := rs.Primary.ID
 
-		err := c.DeleteOrder(orderID)
+		err := c.DeleteOrder(orderID, &c.Token)
 		if err != nil {
 			return err
 		}
