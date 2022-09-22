@@ -99,7 +99,7 @@ func resourceOrderCreate(ctx context.Context, d *schema.ResourceData, m interfac
 		ois = append(ois, oi)
 	}
 
-	o, err := c.CreateOrder(ois)
+	o, err := c.CreateOrder(ois, &c.Token)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -119,7 +119,7 @@ func resourceOrderRead(ctx context.Context, d *schema.ResourceData, m interface{
 
 	orderID := d.Id()
 
-	order, err := c.GetOrder(orderID)
+	order, err := c.GetOrder(orderID, &c.Token)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -156,7 +156,7 @@ func resourceOrderUpdate(ctx context.Context, d *schema.ResourceData, m interfac
 			ois = append(ois, oi)
 		}
 
-		_, err := c.UpdateOrder(orderID, ois)
+		_, err := c.UpdateOrder(orderID, ois, &c.Token)
 		if err != nil {
 			return diag.FromErr(err)
 		}
@@ -175,7 +175,7 @@ func resourceOrderDelete(ctx context.Context, d *schema.ResourceData, m interfac
 
 	orderID := d.Id()
 
-	err := c.DeleteOrder(orderID)
+	err := c.DeleteOrder(orderID, &c.Token)
 	if err != nil {
 		return diag.FromErr(err)
 	}
